@@ -1,0 +1,11 @@
+# Credentials & secrets
+key.json
+*.key
+*.pem
+credentials.json
+
+# Temporary files
+*.tmp
+*.log
+.terraform/
+*.tfstate*
