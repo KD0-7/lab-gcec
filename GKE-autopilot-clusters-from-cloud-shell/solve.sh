@@ -77,17 +77,23 @@ else
 fi
 
 log_info "Waiting for nginx-1 Pod to be provisioned and Running..."
-for i in {1..50}; do
-    POD_STATUS=$(kubectl get pods -l app=nginx-1 -o jsonpath='{.items[0].status.phase}' 2>/dev/null || echo "Pending")
-    if [ "$POD_STATUS" = "Running" ]; then
-        break
+my_nginx_pod=""
+for i in {1..60}; do
+    my_nginx_pod=$(kubectl get pods -l app=nginx-1 -o jsonpath='{.items[0].metadata.name}' 2>/dev/null || true)
+    if [ -n "$my_nginx_pod" ]; then
+        POD_STATUS=$(kubectl get pod "$my_nginx_pod" -o jsonpath='{.status.phase}' 2>/dev/null || echo "Pending")
+        if [ "$POD_STATUS" = "Running" ]; then
+            break
+        fi
     fi
     echo -n "."
     sleep 5
 done
 echo ""
 
-my_nginx_pod=$(kubectl get pods -l app=nginx-1 -o jsonpath='{.items[0].metadata.name}')
+if [ -z "$my_nginx_pod" ]; then
+    my_nginx_pod=$(kubectl get pods --no-headers | grep nginx-1 | awk '{print $1}' | head -n 1)
+fi
 log_success "Pod $my_nginx_pod is Running."
 
 log_info "Creating ~/test.html and pushing into container..."
@@ -99,13 +105,9 @@ kubectl cp "$HOME/test.html" "${my_nginx_pod}:/usr/share/nginx/html/test.html"
 log_success "File test.html copied to ${my_nginx_pod}:/usr/share/nginx/html/test.html"
 
 log_info "Exposing nginx Pod via LoadBalancer service..."
-SVC_EXISTS=$(kubectl get svc -o jsonpath="{.items[?(@.metadata.name=='${my_nginx_pod}')].metadata.name}" 2>/dev/null || true)
-if [ -z "$SVC_EXISTS" ]; then
-    kubectl expose pod "$my_nginx_pod" --port=80 --type=LoadBalancer --quiet || true
-    log_success "Created LoadBalancer service for pod $my_nginx_pod."
-else
-    log_info "Service $my_nginx_pod already exists."
-fi
+kubectl expose pod "$my_nginx_pod" --port=80 --type=LoadBalancer 2>/dev/null || true
+kubectl expose deployment nginx-1 --port=80 --type=LoadBalancer --name=nginx-1 2>/dev/null || true
+log_success "Exposed nginx service."
 
 log_info "Deploying Metrics Server..."
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml 2>/dev/null || true
