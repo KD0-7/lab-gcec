@@ -3,7 +3,7 @@
 [![Google Cloud](https://img.shields.io/badge/Google%20Cloud-GCP-4285F4?logo=google-cloud&logoColor=white)](https://cloud.google.com/)
 [![Kubernetes](https://img.shields.io/badge/Kubernetes-GKE-326CE5?logo=kubernetes&logoColor=white)](https://kubernetes.io/)
 [![Networking](https://img.shields.io/badge/VPC-Networking-34A853?logo=google&logoColor=white)](https://cloud.google.com/vpc)
-[![Cloud NAT](https://img.shields.io/badge/Networking-Cloud%20NAT-EA4335?logo=google-cloud&logoColor=white)](https://cloud.google.com/nat)
+[![Compute Engine](https://img.shields.io/badge/Compute%20Engine-VMs-FBBC05?logo=google-cloud&logoColor=white)](https://cloud.google.com/compute)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 A curated collection of automated solutions, scripts, architectural blueprints, and walkthroughs for the **Google Cloud Engineering Certificate** pathway on **Google Cloud Skills Boost / Qwiklabs**.
@@ -18,6 +18,21 @@ A curated collection of automated solutions, scripts, architectural blueprints, 
 | **CBL011** | **Deploy a LAMP Stack with Google Cloud Marketplace** | Essential Google Cloud Infrastructure: Foundation | [View Solution](./CBL011-deploy-lamp-stack-marketplace) |
 | **CBL057** | **Create and Configure VPC Networks** | Essential Google Cloud Infrastructure: Foundation | [View Solution](./CBL057-create-and-configure-vpc-networks) |
 | **CBL188** | **Implement Private Google Access and Cloud NAT** | Essential Google Cloud Infrastructure: Foundation | [View Solution](./CBL188-implement-private-google-access-and-cloud-nat) |
+| **CBL138** | **Accessing the Google Cloud Console and Cloud Shell** | Getting Started with Google Kubernetes Engine | [View Solution](./CBL138-accessing-cloud-console-and-cloud-shell) |
+
+---
+
+## 🌟 CBL138: Accessing the Google Cloud Console and Cloud Shell
+
+* **Directory:** [`./CBL138-accessing-cloud-console-and-cloud-shell`](./CBL138-accessing-cloud-console-and-cloud-shell)
+* **Goal:** Navigate Cloud Console and Cloud Shell, deploy a Compute Engine VM with HTTP firewall rules, create an IAM service account with Editor privileges, manage Cloud Storage buckets and public objects, and serve a custom Nginx website.
+* **1-Command Quickstart:**
+  ```bash
+  git clone https://github.com/KD0-7/lab-gcec.git
+  cd lab-gcec/CBL138-accessing-cloud-console-and-cloud-shell
+  chmod +x solve.sh verify.sh
+  ./solve.sh
+  ```
 
 ---
 
@@ -132,6 +147,10 @@ lab-gcec/
 ├── solve.sh                                            # GSP321: All-in-one automated solution script
 ├── .gitattributes                                      # Enforces LF line endings for Linux/Cloud Shell
 ├── .gitignore                                          # Git ignore for keys and temporary credentials
+├── CBL138-accessing-cloud-console-and-cloud-shell/     # Lab CBL138: Cloud Console and Cloud Shell
+│   ├── README.md                                       # Complete guide & command breakdown
+│   ├── solve.sh                                        # Automated provisioning script
+│   └── verify.sh                                       # Health check & validation script
 ├── CBL188-implement-private-google-access-and-cloud-nat/ # Lab CBL188: Private Google Access and Cloud NAT
 │   ├── README.md                                       # Complete guide, diagrams & quiz answers
 │   ├── solve.sh                                        # Automated provisioning script
