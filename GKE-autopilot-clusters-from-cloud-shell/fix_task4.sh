@@ -7,7 +7,7 @@
 set -euo pipefail
 
 echo "Finding nginx-1 pod..."
-my_nginx_pod=$(kubectl get pods -l app=nginx-1 -o jsonpath='{.items[0].metadata.name}' 2>/dev/null || kubectl get pods --no-headers | grep nginx-1 | awk '{print $1}' | head -n 1)
+my_nginx_pod=$(kubectl get pods --no-headers | awk '{print $1}' | grep '^nginx-1-' | head -n 1)
 
 if [ -z "$my_nginx_pod" ]; then
     echo "nginx-1 pod not found! Creating deployment nginx-1..."
