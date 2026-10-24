@@ -12,7 +12,7 @@ A curated collection of automated solutions, scripts, architectural blueprints, 
 
 ## 📚 Labs in this Repository
 
-| Lab ID / Name | Lab Title | Course / Badge | Solution & Guide |
+| Lab Name / ID | Lab Title | Course / Badge | Solution & Guide |
 | :--- | :--- | :--- | :---: |
 | **GSP321** | **Develop your Google Cloud Network: Challenge Lab** | Develop Your Google Cloud Network | [View Solution](#-gsp321-develop-your-google-cloud-network-challenge-lab) |
 | **CBL011** | **Deploy a LAMP Stack with Google Cloud Marketplace** | Essential Google Cloud Infrastructure: Foundation | [View Solution](./CBL011-deploy-lamp-stack-marketplace) |
@@ -20,6 +20,21 @@ A curated collection of automated solutions, scripts, architectural blueprints, 
 | **CBL188** | **Implement Private Google Access and Cloud NAT** | Essential Google Cloud Infrastructure: Foundation | [View Solution](./CBL188-implement-private-google-access-and-cloud-nat) |
 | **CBL138** | **Accessing the Google Cloud Console and Cloud Shell** | Getting Started with Google Kubernetes Engine | [View Solution](./CBL138-accessing-cloud-console-and-cloud-shell) |
 | **GKE-Autopilot** | **Deploying GKE Autopilot Clusters from Cloud Shell** | Getting Started with Google Kubernetes Engine | [View Solution](./GKE-autopilot-clusters-from-cloud-shell) |
+| **GKE-Console** | **Deploying GKE Autopilot Clusters** | Getting Started with Google Kubernetes Engine | [View Solution](./GKE-deploying-autopilot-clusters) |
+
+---
+
+## 🌟 GKE: Deploying GKE Autopilot Clusters
+
+* **Directory:** [`./GKE-deploying-autopilot-clusters`](./GKE-deploying-autopilot-clusters)
+* **Goal:** Deploy a regional GKE Autopilot cluster (`autopilot-cluster-1`) in `us-west1` and deploy a 3-replica `nginx-1` sample workload.
+* **1-Command Quickstart:**
+  ```bash
+  git clone https://github.com/KD0-7/lab-gcec.git
+  cd lab-gcec/GKE-deploying-autopilot-clusters
+  chmod +x solve.sh verify.sh
+  ./solve.sh
+  ```
 
 ---
 
@@ -62,9 +77,6 @@ A curated collection of automated solutions, scripts, architectural blueprints, 
   chmod +x solve.sh verify.sh
   ./solve.sh
   ```
-* **In-Lab Quiz Answers:**
-  1. *Did the command prompt change to `@vm-internal`?* ➡️ **`True`**
-  2. *Currently, which of your VM instances can access the image from your bucket? (Before PGA)* ➡️ **`Cloud Shell`**
 
 ---
 
@@ -79,10 +91,6 @@ A curated collection of automated solutions, scripts, architectural blueprints, 
   chmod +x solve.sh test_connectivity.sh
   ./solve.sh
   ```
-* **In-Lab Quiz Answers:**
-  1. *Without a VPC network, you cannot create VM instances, containers, or App Engine applications.* ➡️ **True**
-  2. *Which firewall rule allows the ping to mynet-notus-vm's external IP address?* ➡️ **`mynetwork-allow-icmp`**
-  3. *Which instances should you be able to ping from mynet-us-vm using internal IP addresses?* ➡️ **`mynet-notus-vm`**
 
 ---
 
@@ -112,46 +120,6 @@ chmod +x solve.sh scripts/*.sh
 ./solve.sh
 ```
 
-> **Tip:** You will be prompted for **Username 2** (Additional Engineer email for Task 9). You can also provide it directly:
-> ```bash
-> ./solve.sh "<USERNAME_2_EMAIL>"
-> ```
-
-### 🏛️ Network Architecture & Topology
-
-```mermaid
-graph TD
-    subgraph "griffin-dev-vpc (192.168.0.0/16)"
-        subgraph "griffin-dev-mgmt (192.168.32.0/20)"
-            NIC0["Bastion Host: nic0"]
-        end
-        subgraph "griffin-dev-wp (192.168.16.0/20)"
-            GKE["GKE Cluster: griffin-dev<br/>(2x e2-standard-4)"]
-            WP["WordPress Pods + Cloud SQL Proxy"]
-        end
-    end
-
-    subgraph "griffin-prod-vpc (192.168.0.0/16)"
-        subgraph "griffin-prod-mgmt (192.168.64.0/20)"
-            NIC1["Bastion Host: nic1"]
-        end
-        subgraph "griffin-prod-wp (192.168.48.0/20)"
-            PROD_WP["Production Workloads"]
-        end
-    end
-
-    subgraph "Managed Services"
-        SQL["Cloud SQL MySQL: griffin-dev-db<br/>DB: wordpress | User: wp_user"]
-        LB["External HTTP Load Balancer"]
-        MON["Cloud Monitoring Uptime Check"]
-    end
-
-    NIC0 --- NIC1
-    WP -->|Cloud SQL Proxy Sidecar| SQL
-    LB --> WP
-    MON -->|Probes :80| LB
-```
-
 ---
 
 ## 📁 Repository Structure
@@ -162,9 +130,14 @@ lab-gcec/
 ├── solve.sh                                            # GSP321: All-in-one automated solution script
 ├── .gitattributes                                      # Enforces LF line endings for Linux/Cloud Shell
 ├── .gitignore                                          # Git ignore for keys and temporary credentials
-├── GKE-autopilot-clusters-from-cloud-shell/            # GKE Autopilot Clusters lab
+├── GKE-deploying-autopilot-clusters/                  # GKE Autopilot Clusters (Console/Workloads)
 │   ├── README.md                                       # Complete guide & command breakdown
 │   ├── solve.sh                                        # Automated provisioning script
+│   └── verify.sh                                       # Health check & validation script
+├── GKE-autopilot-clusters-from-cloud-shell/            # GKE Autopilot Clusters from Cloud Shell
+│   ├── README.md                                       # Complete guide & command breakdown
+│   ├── solve.sh                                        # Automated provisioning script
+│   ├── fix_task4.sh                                    # Quick fix for pod exposure
 │   └── verify.sh                                       # Health check & validation script
 ├── CBL138-accessing-cloud-console-and-cloud-shell/     # Lab CBL138: Cloud Console and Cloud Shell
 │   ├── README.md                                       # Complete guide & command breakdown
