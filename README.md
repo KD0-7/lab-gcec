@@ -3,6 +3,7 @@
 [![Google Cloud](https://img.shields.io/badge/Google%20Cloud-GCP-4285F4?logo=google-cloud&logoColor=white)](https://cloud.google.com/)
 [![Kubernetes](https://img.shields.io/badge/Kubernetes-GKE-326CE5?logo=kubernetes&logoColor=white)](https://kubernetes.io/)
 [![Networking](https://img.shields.io/badge/VPC-Networking-34A853?logo=google&logoColor=white)](https://cloud.google.com/vpc)
+[![Cloud NAT](https://img.shields.io/badge/Networking-Cloud%20NAT-EA4335?logo=google-cloud&logoColor=white)](https://cloud.google.com/nat)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 A curated collection of automated solutions, scripts, architectural blueprints, and walkthroughs for the **Google Cloud Engineering Certificate** pathway on **Google Cloud Skills Boost / Qwiklabs**.
@@ -16,6 +17,24 @@ A curated collection of automated solutions, scripts, architectural blueprints, 
 | **GSP321** | **Develop your Google Cloud Network: Challenge Lab** | Develop Your Google Cloud Network | [View Solution](#-gsp321-develop-your-google-cloud-network-challenge-lab) |
 | **CBL011** | **Deploy a LAMP Stack with Google Cloud Marketplace** | Essential Google Cloud Infrastructure: Foundation | [View Solution](./CBL011-deploy-lamp-stack-marketplace) |
 | **CBL057** | **Create and Configure VPC Networks** | Essential Google Cloud Infrastructure: Foundation | [View Solution](./CBL057-create-and-configure-vpc-networks) |
+| **CBL188** | **Implement Private Google Access and Cloud NAT** | Essential Google Cloud Infrastructure: Foundation | [View Solution](./CBL188-implement-private-google-access-and-cloud-nat) |
+
+---
+
+## 🌟 CBL188: Implement Private Google Access and Cloud NAT
+
+* **Directory:** [`./CBL188-implement-private-google-access-and-cloud-nat`](./CBL188-implement-private-google-access-and-cloud-nat)
+* **Goal:** Configure a private Compute Engine VM without an external IP, connect securely via Cloud IAP tunneling, enable Private Google Access for Google APIs (Cloud Storage), and deploy Cloud NAT for outbound internet package updates.
+* **1-Command Quickstart:**
+  ```bash
+  git clone https://github.com/KD0-7/lab-gcec.git
+  cd lab-gcec/CBL188-implement-private-google-access-and-cloud-nat
+  chmod +x solve.sh verify.sh
+  ./solve.sh
+  ```
+* **In-Lab Quiz Answers:**
+  1. *Did the command prompt change to `@vm-internal`?* ➡️ **`True`**
+  2. *Currently, which of your VM instances can access the image from your bucket? (Before PGA)* ➡️ **`Cloud Shell`**
 
 ---
 
@@ -109,18 +128,22 @@ graph TD
 
 ```
 lab-gcec/
-├── README.md                                   # Master repository documentation
-├── solve.sh                                    # GSP321: All-in-one automated solution script
-├── .gitattributes                              # Enforces LF line endings for Linux/Cloud Shell
-├── .gitignore                                  # Git ignore for keys and temporary credentials
-├── CBL057-create-and-configure-vpc-networks/   # Lab CBL057: Create and Configure VPC Networks
-│   ├── README.md                               # Complete guide & quiz answers
-│   ├── solve.sh                                # Automated provisioning script
-│   └── test_connectivity.sh                    # Verification & ping test script
-├── CBL011-deploy-lamp-stack-marketplace/       # Lab CBL011: Deploy a LAMP Stack with Marketplace
-│   ├── README.md                               # Step-by-step console guide & quiz answer
-│   └── verify.sh                               # Health check & Apache verification script
-└── scripts/                                    # GSP321 modular task scripts
+├── README.md                                           # Master repository documentation
+├── solve.sh                                            # GSP321: All-in-one automated solution script
+├── .gitattributes                                      # Enforces LF line endings for Linux/Cloud Shell
+├── .gitignore                                          # Git ignore for keys and temporary credentials
+├── CBL188-implement-private-google-access-and-cloud-nat/ # Lab CBL188: Private Google Access and Cloud NAT
+│   ├── README.md                                       # Complete guide, diagrams & quiz answers
+│   ├── solve.sh                                        # Automated provisioning script
+│   └── verify.sh                                       # Health check & validation script
+├── CBL057-create-and-configure-vpc-networks/           # Lab CBL057: Create and Configure VPC Networks
+│   ├── README.md                                       # Complete guide & quiz answers
+│   ├── solve.sh                                        # Automated provisioning script
+│   └── test_connectivity.sh                            # Verification & ping test script
+├── CBL011-deploy-lamp-stack-marketplace/               # Lab CBL011: Deploy a LAMP Stack with Marketplace
+│   ├── README.md                                       # Step-by-step console guide & quiz answer
+│   └── verify.sh                                       # Health check & Apache verification script
+└── scripts/                                            # GSP321 modular task scripts
     ├── 01_dev_vpc.sh
     ├── 02_prod_vpc.sh
     ├── 03_bastion.sh
