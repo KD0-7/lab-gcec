@@ -185,7 +185,8 @@ for i in {1..12}; do
     sleep 5
 done
 
-gcloud compute scp index.html first-vm:index.html --zone="$ZONE" --quiet
+gcloud compute scp index.html first-vm:index.html --zone="$ZONE" --quiet 2>/dev/null || \
+    gcloud compute ssh first-vm --zone="$ZONE" --quiet --command="cat > index.html" < index.html
 
 gcloud compute ssh first-vm --zone="$ZONE" --quiet --command="
     sudo apt-get remove -y --purge man-db 2>/dev/null || true
