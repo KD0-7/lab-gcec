@@ -2,6 +2,8 @@
 
 [![Google Cloud](https://img.shields.io/badge/Google%20Cloud-GCP-4285F4?logo=google-cloud&logoColor=white)](https://cloud.google.com/)
 [![Kubernetes](https://img.shields.io/badge/Kubernetes-GKE-326CE5?logo=kubernetes&logoColor=white)](https://kubernetes.io/)
+[![Cloud Build](https://img.shields.io/badge/CI%2FCD-Cloud%20Build-4285F4?logo=google-cloud&logoColor=white)](https://cloud.google.com/build)
+[![Artifact Registry](https://img.shields.io/badge/Registry-Artifact%20Registry-34A853?logo=google&logoColor=white)](https://cloud.google.com/artifact-registry)
 [![Networking](https://img.shields.io/badge/VPC-Networking-34A853?logo=google&logoColor=white)](https://cloud.google.com/vpc)
 [![Compute Engine](https://img.shields.io/badge/Compute%20Engine-VMs-FBBC05?logo=google-cloud&logoColor=white)](https://cloud.google.com/compute)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
@@ -21,6 +23,21 @@ A curated collection of automated solutions, scripts, architectural blueprints, 
 | **CBL138** | **Accessing the Google Cloud Console and Cloud Shell** | Getting Started with Google Kubernetes Engine | [View Solution](./CBL138-accessing-cloud-console-and-cloud-shell) |
 | **GKE-Autopilot** | **Deploying GKE Autopilot Clusters from Cloud Shell** | Getting Started with Google Kubernetes Engine | [View Solution](./GKE-autopilot-clusters-from-cloud-shell) |
 | **GKE-Console** | **Deploying GKE Autopilot Clusters** | Getting Started with Google Kubernetes Engine | [View Solution](./GKE-deploying-autopilot-clusters) |
+| **CBL139** | **Working with Cloud Build** | Getting Started with Google Kubernetes Engine | [View Solution](./CBL139-working-with-cloud-build) |
+
+---
+
+## 🌟 CBL139: Working with Cloud Build
+
+* **Directory:** [`./CBL139-working-with-cloud-build`](./CBL139-working-with-cloud-build)
+* **Goal:** Build Docker container images with Dockerfiles and Cloud Build, store artifacts in Artifact Registry (`us-east4`), write custom build configuration files (`cloudbuild.yaml`), and implement automated container testing and failure handling (`cloudbuild2.yaml`).
+* **1-Command Quickstart:**
+  ```bash
+  git clone https://github.com/KD0-7/lab-gcec.git
+  cd lab-gcec/CBL139-working-with-cloud-build
+  chmod +x solve.sh verify.sh quickstart.sh
+  ./solve.sh
+  ```
 
 ---
 
@@ -130,6 +147,14 @@ lab-gcec/
 ├── solve.sh                                            # GSP321: All-in-one automated solution script
 ├── .gitattributes                                      # Enforces LF line endings for Linux/Cloud Shell
 ├── .gitignore                                          # Git ignore for keys and temporary credentials
+├── CBL139-working-with-cloud-build/                   # Lab CBL139: Working with Cloud Build
+│   ├── README.md                                       # Complete guide & command breakdown
+│   ├── solve.sh                                        # Automated provisioning script
+│   ├── verify.sh                                       # Health check & validation script
+│   ├── quickstart.sh                                   # Sample application script
+│   ├── Dockerfile                                      # Container definition
+│   ├── cloudbuild.yaml                                 # Custom build configuration
+│   └── cloudbuild2.yaml                                # Test failure simulation
 ├── GKE-deploying-autopilot-clusters/                  # GKE Autopilot Clusters (Console/Workloads)
 │   ├── README.md                                       # Complete guide & command breakdown
 │   ├── solve.sh                                        # Automated provisioning script
