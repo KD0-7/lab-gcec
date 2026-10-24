@@ -12,13 +12,28 @@ A curated collection of automated solutions, scripts, architectural blueprints, 
 
 ## 📚 Labs in this Repository
 
-| Lab ID | Lab Title | Course / Badge | Solution & Guide |
+| Lab ID / Name | Lab Title | Course / Badge | Solution & Guide |
 | :--- | :--- | :--- | :---: |
 | **GSP321** | **Develop your Google Cloud Network: Challenge Lab** | Develop Your Google Cloud Network | [View Solution](#-gsp321-develop-your-google-cloud-network-challenge-lab) |
 | **CBL011** | **Deploy a LAMP Stack with Google Cloud Marketplace** | Essential Google Cloud Infrastructure: Foundation | [View Solution](./CBL011-deploy-lamp-stack-marketplace) |
 | **CBL057** | **Create and Configure VPC Networks** | Essential Google Cloud Infrastructure: Foundation | [View Solution](./CBL057-create-and-configure-vpc-networks) |
 | **CBL188** | **Implement Private Google Access and Cloud NAT** | Essential Google Cloud Infrastructure: Foundation | [View Solution](./CBL188-implement-private-google-access-and-cloud-nat) |
 | **CBL138** | **Accessing the Google Cloud Console and Cloud Shell** | Getting Started with Google Kubernetes Engine | [View Solution](./CBL138-accessing-cloud-console-and-cloud-shell) |
+| **GKE-Autopilot** | **Deploying GKE Autopilot Clusters from Cloud Shell** | Getting Started with Google Kubernetes Engine | [View Solution](./GKE-autopilot-clusters-from-cloud-shell) |
+
+---
+
+## 🌟 GKE: Deploying GKE Autopilot Clusters from Cloud Shell
+
+* **Directory:** [`./GKE-autopilot-clusters-from-cloud-shell`](./GKE-autopilot-clusters-from-cloud-shell)
+* **Goal:** Create a GKE Autopilot cluster (`autopilot-cluster-1`), connect using `kubectl`, deploy containerized workloads (`nginx-1`), inject static content, expose via LoadBalancer, and deploy pods declaratively via YAML manifests (`new-nginx`).
+* **1-Command Quickstart:**
+  ```bash
+  git clone https://github.com/KD0-7/lab-gcec.git
+  cd lab-gcec/GKE-autopilot-clusters-from-cloud-shell
+  chmod +x solve.sh verify.sh
+  ./solve.sh
+  ```
 
 ---
 
@@ -147,6 +162,10 @@ lab-gcec/
 ├── solve.sh                                            # GSP321: All-in-one automated solution script
 ├── .gitattributes                                      # Enforces LF line endings for Linux/Cloud Shell
 ├── .gitignore                                          # Git ignore for keys and temporary credentials
+├── GKE-autopilot-clusters-from-cloud-shell/            # GKE Autopilot Clusters lab
+│   ├── README.md                                       # Complete guide & command breakdown
+│   ├── solve.sh                                        # Automated provisioning script
+│   └── verify.sh                                       # Health check & validation script
 ├── CBL138-accessing-cloud-console-and-cloud-shell/     # Lab CBL138: Cloud Console and Cloud Shell
 │   ├── README.md                                       # Complete guide & command breakdown
 │   ├── solve.sh                                        # Automated provisioning script
