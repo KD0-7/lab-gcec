@@ -1,7 +1,7 @@
 # Google Cloud Engineering Certificate (GCEC) - Hands-on Labs & Solutions
 
 [![Google Cloud](https://img.shields.io/badge/Google%20Cloud-GCP-4285F4?logo=google-cloud&logoColor=white)](https://cloud.google.com/)
-[![Kubernetes](https://img.shields.io/badge/Kubernetes-GKE-326CE5?logo=kubernetes&logoColor=white)](https://kubernetes.io/)
+[![Kubernetes](https://img.shields.io/badge/Kubernetes-GKE-326CE5?logo=kubernetes&logoColor=white)](https://cloud.google.com/kubernetes-engine)
 [![Cloud Build](https://img.shields.io/badge/CI%2FCD-Cloud%20Build-4285F4?logo=google-cloud&logoColor=white)](https://cloud.google.com/build)
 [![Artifact Registry](https://img.shields.io/badge/Registry-Artifact%20Registry-34A853?logo=google&logoColor=white)](https://cloud.google.com/artifact-registry)
 [![Networking](https://img.shields.io/badge/VPC-Networking-34A853?logo=google&logoColor=white)](https://cloud.google.com/vpc)
@@ -24,6 +24,25 @@ A curated collection of automated solutions, scripts, architectural blueprints, 
 | **GKE-Autopilot** | **Deploying GKE Autopilot Clusters from Cloud Shell** | Getting Started with Google Kubernetes Engine | [View Solution](./GKE-autopilot-clusters-from-cloud-shell) |
 | **GKE-Console** | **Deploying GKE Autopilot Clusters** | Getting Started with Google Kubernetes Engine | [View Solution](./GKE-deploying-autopilot-clusters) |
 | **CBL139** | **Working with Cloud Build** | Getting Started with Google Kubernetes Engine | [View Solution](./CBL139-working-with-cloud-build) |
+| **GSP015** | **Running a Containerized App on Google Kubernetes Engine** | Getting Started with Google Kubernetes Engine | [View Solution](./GSP015-running-a-containerized-app-on-gke) |
+
+---
+
+## 🌟 GSP015: Running a Containerized App on Google Kubernetes Engine
+
+* **Directory:** [`./GSP015-running-a-containerized-app-on-gke`](./GSP015-running-a-containerized-app-on-gke)
+* **Goal:** Create a 3-node GKE cluster (`hello-world`) in `us-central1-f`, build and publish a Golang container image to Container Registry, deploy the app, and expose it publicly via a LoadBalancer service.
+* **1-Command Quickstart:**
+  ```bash
+  git clone https://github.com/KD0-7/lab-gcec.git
+  cd lab-gcec/GSP015-running-a-containerized-app-on-gke
+  chmod +x solve.sh verify.sh
+  ./solve.sh
+  ```
+* **In-Lab Quiz Answers:**
+  1. *docker push publish the container image in Google Cloud to ____.* ➡️ **`Artifact Registry`**
+  2. *Kubernetes is an open-source container-orchestration system for automating deployment, scaling and management of containerized applications.* ➡️ **`True`**
+  3. *In Kubernetes environment, kubectl expose creates a ____, the forwarding rules for the load balancer, and the firewall rules that allow external traffic to be sent to the pod.* ➡️ **`Service`**
 
 ---
 
@@ -147,6 +166,10 @@ lab-gcec/
 ├── solve.sh                                            # GSP321: All-in-one automated solution script
 ├── .gitattributes                                      # Enforces LF line endings for Linux/Cloud Shell
 ├── .gitignore                                          # Git ignore for keys and temporary credentials
+├── GSP015-running-a-containerized-app-on-gke/         # Lab GSP015: Running a Containerized App on GKE
+│   ├── README.md                                       # Complete guide & command breakdown
+│   ├── solve.sh                                        # Automated provisioning script
+│   └── verify.sh                                       # Health check & validation script
 ├── CBL139-working-with-cloud-build/                   # Lab CBL139: Working with Cloud Build
 │   ├── README.md                                       # Complete guide & command breakdown
 │   ├── solve.sh                                        # Automated provisioning script
