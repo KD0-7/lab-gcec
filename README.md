@@ -2,7 +2,7 @@
 
 [![Google Cloud](https://img.shields.io/badge/Google%20Cloud-GCP-4285F4?logo=google-cloud&logoColor=white)](https://cloud.google.com/)
 [![Kubernetes](https://img.shields.io/badge/Kubernetes-GKE-326CE5?logo=kubernetes&logoColor=white)](https://kubernetes.io/)
-[![Marketplace](https://img.shields.io/badge/Marketplace-Solutions-34A853?logo=google&logoColor=white)](https://cloud.google.com/marketplace)
+[![Networking](https://img.shields.io/badge/VPC-Networking-34A853?logo=google&logoColor=white)](https://cloud.google.com/vpc)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 A curated collection of automated solutions, scripts, architectural blueprints, and walkthroughs for the **Google Cloud Engineering Certificate** pathway on **Google Cloud Skills Boost / Qwiklabs**.
@@ -15,6 +15,25 @@ A curated collection of automated solutions, scripts, architectural blueprints, 
 | :--- | :--- | :--- | :---: |
 | **GSP321** | **Develop your Google Cloud Network: Challenge Lab** | Develop Your Google Cloud Network | [View Solution](#-gsp321-develop-your-google-cloud-network-challenge-lab) |
 | **CBL011** | **Deploy a LAMP Stack with Google Cloud Marketplace** | Essential Google Cloud Infrastructure: Foundation | [View Solution](./CBL011-deploy-lamp-stack-marketplace) |
+| **CBL057** | **Create and Configure VPC Networks** | Essential Google Cloud Infrastructure: Foundation | [View Solution](./CBL057-create-and-configure-vpc-networks) |
+
+---
+
+## 🌟 CBL057: Create and Configure VPC Networks
+
+* **Directory:** [`./CBL057-create-and-configure-vpc-networks`](./CBL057-create-and-configure-vpc-networks)
+* **Goal:** Explore default networks, create auto mode VPCs, convert auto to custom mode, deploy multi-VPC networks (`managementnet`, `privatenet`), and verify cross-network routing and firewall isolation.
+* **1-Command Quickstart:**
+  ```bash
+  git clone https://github.com/KD0-7/lab-gcec.git
+  cd lab-gcec/CBL057-create-and-configure-vpc-networks
+  chmod +x solve.sh test_connectivity.sh
+  ./solve.sh
+  ```
+* **In-Lab Quiz Answers:**
+  1. *Without a VPC network, you cannot create VM instances, containers, or App Engine applications.* ➡️ **True**
+  2. *Which firewall rule allows the ping to mynet-notus-vm's external IP address?* ➡️ **`mynetwork-allow-icmp`**
+  3. *Which instances should you be able to ping from mynet-us-vm using internal IP addresses?* ➡️ **`mynet-notus-vm`**
 
 ---
 
@@ -84,20 +103,6 @@ graph TD
     MON -->|Probes :80| LB
 ```
 
-### 📋 GSP321 Task Breakdown
-
-| Task | Target Resource | Key Configuration |
-| :--- | :--- | :--- |
-| **Task 1** | Development VPC | `griffin-dev-vpc` with subnets `griffin-dev-wp` (`192.168.16.0/20`) & `griffin-dev-mgmt` (`192.168.32.0/20`) |
-| **Task 2** | Production VPC | `griffin-prod-vpc` with subnets `griffin-prod-wp` (`192.168.48.0/20`) & `griffin-prod-mgmt` (`192.168.64.0/20`) |
-| **Task 3** | Bastion Host | `griffin-bastion` (`e2-medium`) with `nic0` on dev and `nic1` on prod, plus port 22 SSH firewall rules |
-| **Task 4** | Cloud SQL | MySQL instance `griffin-dev-db` in `us-east1`, database `wordpress`, user `wp_user` (`stormwind_rules`) |
-| **Task 5** | GKE Cluster | 2-node cluster `griffin-dev` (`e2-standard-4`) in `griffin-dev-wp` subnet (`us-east1-c`) |
-| **Task 6** | Cluster Preparation | Secrets and volume from `wp-env.yaml` + `cloudsql-instance-credentials` service account key |
-| **Task 7** | WordPress Deployment | Injects Cloud SQL connection into `wp-deployment.yaml`, creates `wp-service.yaml` Load Balancer |
-| **Task 8** | Cloud Monitoring | HTTP Uptime Check configured on the Load Balancer IP |
-| **Task 9** | Additional Access | Grants `roles/editor` to Username 2 |
-
 ---
 
 ## 📁 Repository Structure
@@ -108,6 +113,10 @@ lab-gcec/
 ├── solve.sh                                    # GSP321: All-in-one automated solution script
 ├── .gitattributes                              # Enforces LF line endings for Linux/Cloud Shell
 ├── .gitignore                                  # Git ignore for keys and temporary credentials
+├── CBL057-create-and-configure-vpc-networks/   # Lab CBL057: Create and Configure VPC Networks
+│   ├── README.md                               # Complete guide & quiz answers
+│   ├── solve.sh                                # Automated provisioning script
+│   └── test_connectivity.sh                    # Verification & ping test script
 ├── CBL011-deploy-lamp-stack-marketplace/       # Lab CBL011: Deploy a LAMP Stack with Marketplace
 │   ├── README.md                               # Step-by-step console guide & quiz answer
 │   └── verify.sh                               # Health check & Apache verification script
