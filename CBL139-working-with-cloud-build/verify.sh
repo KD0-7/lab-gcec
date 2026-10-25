@@ -13,7 +13,7 @@ CYAN='\033[0;36m'
 RED='\033[0;31m'
 NC='\033[0m'
 
-REGION="us-east4"
+REGION="${1:-${REGION:-us-east4}}"
 REPO_NAME="quickstart-docker-repo"
 IMAGE_NAME="quickstart-image"
 

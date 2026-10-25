@@ -29,10 +29,10 @@ log_info() {
     echo -e "${YELLOW}[i] $1${NC}"
 }
 
-export REGION="us-east4"
+export REGION="${1:-${REGION:-us-east4}}"
 export REPO_NAME="quickstart-docker-repo"
 export IMAGE_NAME="quickstart-image"
-export PROJECT_ID="${PROJECT_ID:-$(gcloud config get-value project 2>/dev/null)}"
+export PROJECT_ID="${PROJECT_ID:-${DEVSHELL_PROJECT_ID:-$(gcloud config get-value project 2>/dev/null)}}"
 
 if [ -z "$PROJECT_ID" ]; then
     echo -e "${RED}[✘] PROJECT_ID is empty. Run 'gcloud config set project <your-project-id>' first.${NC}"
