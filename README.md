@@ -136,7 +136,7 @@ A curated collection of automated solutions, scripts, architectural blueprints, 
 * **Goal:** Launch a click-to-deploy LAMP Stack (Linux, Apache, MySQL, PHP) via Google Cloud Marketplace on Compute Engine.
 * **Key Configurations:**
   * **Solution:** LAMP Stack, by Google Click to Deploy
-  * **Zone:** `europe-west1-b`
+  * **Zone:** `europe-west1-c` *(or assigned lab zone)*
   * **Machine Type:** `e2-medium` (Series E2)
   * **Quiz Answer:** `Deployment Manager`
 * **Verification:** Run `./verify.sh` in Cloud Shell or visit `http://<EXTERNAL_IP>`.

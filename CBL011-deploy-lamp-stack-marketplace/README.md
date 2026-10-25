@@ -43,7 +43,7 @@ Comprehensive walkthrough and verification script for the Google Cloud lab: **De
 6. On the *Successfully agreed to terms* pop-up, click **Deploy**.
 7. If prompted to enable the **Compute Engine API** and **Infrastructure Manager API**, click **Enable**.
 8. Configure the deployment parameters:
-   * **Zone:** `europe-west1-b` *(Crucial: must match the lab assigned zone)*
+   * **Zone:** `europe-west1-c` *(Crucial: select `europe-west1-c` or your assigned lab zone)*
    * **Series:** `E2`
    * **Machine Type:** `e2-medium` (2 vCPU, 4 GB memory)
    * Leave all other settings as their default values.
@@ -80,12 +80,14 @@ chmod +x verify.sh
 ./verify.sh
 ```
 
+*(Note: `verify.sh` automatically auto-detects `lamp-1-vm` across all zones, or you can specify `./verify.sh europe-west1-c`)*
+
 ---
 
 ## ✅ Score Checklist
 
 | Task | Objective | Verification Item | Status |
 | :--- | :--- | :--- | :---: |
-| **Task 1** | Deploy LAMP stack | `lamp-1` deployed in `europe-west1-b` on `e2-medium` | Green ✔ |
+| **Task 1** | Deploy LAMP stack | `lamp-1` deployed in `europe-west1-c` on `e2-medium` | Green ✔ |
 | **Task 1 Quiz** | Assessment | Select **Deployment Manager** | Green ✔ |
 | **Task 2** | Verify deployment | Open **Site Url** (`http://<IP>`) and confirm Apache running | Green ✔ |
