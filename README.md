@@ -25,6 +25,25 @@ A curated collection of automated solutions, scripts, architectural blueprints, 
 | **GKE-Console** | **Deploying GKE Autopilot Clusters** | Getting Started with Google Kubernetes Engine | [View Solution](./GKE-deploying-autopilot-clusters) |
 | **CBL139** | **Working with Cloud Build** | Getting Started with Google Kubernetes Engine | [View Solution](./CBL139-working-with-cloud-build) |
 | **GSP015** | **Running a Containerized App on Google Kubernetes Engine** | Getting Started with Google Kubernetes Engine | [View Solution](./GSP015-running-a-containerized-app-on-gke) |
+| **CBL037** | **Configure Cloud SQL** | Essential Google Cloud Infrastructure: Core Services | [View Solution](./CBL037-configure-cloud-sql) |
+
+---
+
+## 🌟 CBL037: Configure Cloud SQL
+
+* **Directory:** [`./CBL037-configure-cloud-sql`](./CBL037-configure-cloud-sql)
+* **Goal:** Configure Cloud SQL (MySQL 8.0 Enterprise) with Private Services Access (PSA) and Public IP, setup Cloud SQL Auth Proxy on `wordpress-proxy`, and configure direct Private IP connection on `wordpress-private-ip`.
+* **1-Command Quickstart (prompts user for Region and Zone):**
+  ```bash
+  git clone https://github.com/KD0-7/lab-gcec.git
+  cd lab-gcec/CBL037-configure-cloud-sql
+  chmod +x solve.sh verify.sh
+  ./solve.sh
+  ```
+* **Direct Parameter Passing:**
+  ```bash
+  ./solve.sh <REGION> <ZONE> [PASSWORD]
+  ```
 
 ---
 
@@ -166,6 +185,10 @@ lab-gcec/
 ├── solve.sh                                            # GSP321: All-in-one automated solution script
 ├── .gitattributes                                      # Enforces LF line endings for Linux/Cloud Shell
 ├── .gitignore                                          # Git ignore for keys and temporary credentials
+├── CBL037-configure-cloud-sql/                         # Lab CBL037: Configure Cloud SQL
+│   ├── README.md                                       # Complete guide, diagrams & dual-connection setup
+│   ├── solve.sh                                        # Automated provisioning script (prompts region/zone)
+│   └── verify.sh                                       # Health check & status validation script
 ├── GSP015-running-a-containerized-app-on-gke/         # Lab GSP015: Running a Containerized App on GKE
 │   ├── README.md                                       # Complete guide & command breakdown
 │   ├── solve.sh                                        # Automated provisioning script
