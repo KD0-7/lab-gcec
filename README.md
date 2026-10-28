@@ -26,6 +26,28 @@ A curated collection of automated solutions, scripts, architectural blueprints, 
 | **CBL139** | **Working with Cloud Build** | Getting Started with Google Kubernetes Engine | [View Solution](./CBL139-working-with-cloud-build) |
 | **GSP015** | **Running a Containerized App on Google Kubernetes Engine** | Getting Started with Google Kubernetes Engine | [View Solution](./GSP015-running-a-containerized-app-on-gke) |
 | **CBL037** | **Configure Cloud SQL** | Essential Google Cloud Infrastructure: Core Services | [View Solution](./CBL037-configure-cloud-sql) |
+| **CBL009** | **Examine Billing data with BigQuery** | Essential Google Cloud Infrastructure: Core Services | [View Solution](./CBL009-examine-billing-data-with-bigquery) |
+
+---
+
+## 🌟 CBL009: Examine Billing data with BigQuery
+
+* **Directory:** [`./CBL009-examine-billing-data-with-bigquery`](./CBL009-examine-billing-data-with-bigquery)
+* **Goal:** Create BigQuery dataset `billing_dataset`, import Avro billing data from Cloud Storage into `sampleinfotable`, and run analytical queries.
+* **1-Command Quickstart:**
+  ```bash
+  git clone https://github.com/KD0-7/lab-gcec.git
+  cd lab-gcec/CBL009-examine-billing-data-with-bigquery
+  chmod +x solve.sh verify.sh
+  ./solve.sh
+  ```
+* **In-Lab Quiz Answers:**
+  * Total rows in table: **`9,738`**
+  * Rows with cost > 0: **`104 rows`**
+  * Product with most billing records: **`Compute Engine has 281136 records`**
+  * Product with most records > $1: **`Cloud Storage has 17 charges costing more than 62 dollar.`**
+  * Most commonly charged unit: **`Requests were the most commonly charged unit of measure.`**
+  * Product with highest total cost: **`Compute Engine has an aggregate cost of $2548.77`**
 
 ---
 
@@ -185,6 +207,11 @@ lab-gcec/
 ├── solve.sh                                            # GSP321: All-in-one automated solution script
 ├── .gitattributes                                      # Enforces LF line endings for Linux/Cloud Shell
 ├── .gitignore                                          # Git ignore for keys and temporary credentials
+├── CBL009-examine-billing-data-with-bigquery/         # Lab CBL009: Examine Billing data with BigQuery
+│   ├── README.md                                       # Complete guide, query library & quiz answers
+│   ├── solve.sh                                        # Automated provisioning & analysis script
+│   ├── verify.sh                                       # Health check & table validation script
+│   └── queries.sql                                     # All 7 analytical BigQuery SQL queries
 ├── CBL037-configure-cloud-sql/                         # Lab CBL037: Configure Cloud SQL
 │   ├── README.md                                       # Complete guide, diagrams & dual-connection setup
 │   ├── solve.sh                                        # Automated provisioning script (prompts region/zone)
