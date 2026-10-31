@@ -27,6 +27,27 @@ A curated collection of automated solutions, scripts, architectural blueprints, 
 | **GSP015** | **Running a Containerized App on Google Kubernetes Engine** | Getting Started with Google Kubernetes Engine | [View Solution](./GSP015-running-a-containerized-app-on-gke) |
 | **CBL037** | **Configure Cloud SQL** | Essential Google Cloud Infrastructure: Core Services | [View Solution](./CBL037-configure-cloud-sql) |
 | **CBL009** | **Examine Billing data with BigQuery** | Essential Google Cloud Infrastructure: Core Services | [View Solution](./CBL009-examine-billing-data-with-bigquery) |
+| **OCBL105** | **Configure an Application Load Balancer with Autoscaling** | Elastic Google Cloud Infrastructure: Scaling and Automation | [View Solution](./OCBL105-configure-application-load-balancer-with-autoscaling) |
+
+---
+
+## 🌟 OCBL105: Configure an Application Load Balancer with Autoscaling
+
+* **Directory:** [`./OCBL105-configure-application-load-balancer-with-autoscaling`](./OCBL105-configure-application-load-balancer-with-autoscaling)
+* **Goal:** Configure a health check firewall rule, Cloud NAT, custom web server image, autoscaled Managed Instance Groups across two regions, and a Global External Application Load Balancer with IPv4/IPv6 frontends.
+* **1-Command Quickstart (prompts user for Region 1, Zone 1, Region 2):**
+  ```bash
+  git clone https://github.com/KD0-7/lab-gcec.git
+  cd lab-gcec/OCBL105-configure-application-load-balancer-with-autoscaling
+  chmod +x solve.sh verify.sh
+  ./solve.sh
+  ```
+* **Direct Parameter Passing:**
+  ```bash
+  ./solve.sh <REGION_1> <ZONE_1> <REGION_2>
+  ```
+* **In-Lab Quiz Answer:**
+  * *The Application Load Balancer (HTTP) should forward traffic to the region that is closest to you.* ➡️ **`True`**
 
 ---
 
@@ -207,6 +228,10 @@ lab-gcec/
 ├── solve.sh                                            # GSP321: All-in-one automated solution script
 ├── .gitattributes                                      # Enforces LF line endings for Linux/Cloud Shell
 ├── .gitignore                                          # Git ignore for keys and temporary credentials
+├── OCBL105-configure-application-load-balancer-with-autoscaling/ # Lab OCBL105: Application Load Balancer with Autoscaling
+│   ├── README.md                                       # Complete guide, diagrams & command breakdown
+│   ├── solve.sh                                        # Automated provisioning script (prompts regions/zone)
+│   └── verify.sh                                       # Health check & status validation script
 ├── CBL009-examine-billing-data-with-bigquery/         # Lab CBL009: Examine Billing data with BigQuery
 │   ├── README.md                                       # Complete guide, query library & quiz answers
 │   ├── solve.sh                                        # Automated provisioning & analysis script
