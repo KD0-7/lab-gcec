@@ -46,26 +46,13 @@ if [ -z "$PROJECT_ID" ]; then
     exit 1
 fi
 
-# 1. Region 1
-if [ -n "${1:-}" ]; then
-    REGION_1="$1"
-elif [ -z "${REGION_1:-}" ]; then
-    read -p "Enter Region 1 (e.g., us-central1): " REGION_1
-fi
+DEFAULT_REGION_1="us-east1"
+DEFAULT_ZONE_1="us-east1-c"
+DEFAULT_REGION_2="asia-east1"
 
-# 2. Zone 1
-if [ -n "${2:-}" ]; then
-    ZONE_1="$2"
-elif [ -z "${ZONE_1:-}" ]; then
-    read -p "Enter Zone 1 (e.g., us-central1-a): " ZONE_1
-fi
-
-# 3. Region 2
-if [ -n "${3:-}" ]; then
-    REGION_2="$3"
-elif [ -z "${REGION_2:-}" ]; then
-    read -p "Enter Region 2 (e.g., europe-west1): " REGION_2
-fi
+REGION_1="${1:-${REGION_1:-$DEFAULT_REGION_1}}"
+ZONE_1="${2:-${ZONE_1:-$DEFAULT_ZONE_1}}"
+REGION_2="${3:-${REGION_2:-$DEFAULT_REGION_2}}"
 
 echo -e "\n${BOLD}Active Configuration:${NC}"
 echo -e "  - Project ID : ${CYAN}${PROJECT_ID}${NC}"
@@ -144,8 +131,17 @@ apt-get install -y apache2
 systemctl start apache2
 systemctl enable apache2
 ' --quiet
-        log_success "VM 'webserver' launched. Waiting 40s for Apache2 setup..."
-        sleep 40
+        log_info "Waiting for Apache2 setup script to finish on 'webserver'..."
+        for i in {1..30}; do
+            if gcloud compute instances get-serial-port-output webserver --zone="$ZONE_1" 2>&1 | grep -q -E "Finished Google Compute Engine Startup Scripts|Startup script finished"; then
+                log_success "Startup script completed."
+                break
+            fi
+            echo -n "."
+            sleep 4
+        done
+        echo ""
+        sleep 5
     fi
 
     log_info "Stopping 'webserver' VM to prepare source disk..."
@@ -352,17 +348,33 @@ log_step "Task 6: Stress Test VM & In-Lab Assessment Question"
 echo -e "  📝 Question : The Application Load Balancer (HTTP) should forward traffic to the region that is closest to you."
 echo -e "  👉 Answer   : ${BOLD}${GREEN}True${NC}\n"
 
-# Create stress-test VM if not already existing
-if ! gcloud compute instances describe stress-test --zone="$ZONE_1" >/dev/null 2>&1; then
-    log_info "Creating 'stress-test' instance in ${ZONE_1}..."
-    gcloud compute instances create stress-test \
-        --zone="$ZONE_1" \
+# Determine stress-test zone in a US region (e.g. us-east4 or fallback to ZONE_1)
+STRESS_ZONE="us-east4-c"
+if [ "$REGION_1" = "us-east4" ]; then
+    STRESS_ZONE="us-east1-c"
+fi
+
+if ! gcloud compute instances describe stress-test --zone="$STRESS_ZONE" >/dev/null 2>&1 && \
+   ! gcloud compute instances describe stress-test --zone="$ZONE_1" >/dev/null 2>&1; then
+    log_info "Creating 'stress-test' instance in ${STRESS_ZONE}..."
+    if ! gcloud compute instances create stress-test \
+        --zone="$STRESS_ZONE" \
         --machine-type=e2-micro \
-        --image=mywebserver --quiet
+        --image=mywebserver --quiet 2>/dev/null; then
+        log_info "Falling back to creating 'stress-test' in ${ZONE_1}..."
+        gcloud compute instances create stress-test \
+            --zone="$ZONE_1" \
+            --machine-type=e2-micro \
+            --image=mywebserver --quiet
+        STRESS_ZONE="$ZONE_1"
+    fi
     log_success "'stress-test' VM created."
 else
     log_info "'stress-test' VM already exists."
 fi
+
+# Active stress zone detection
+ACTIVE_STRESS_ZONE=$(gcloud compute instances list --filter="name=stress-test" --format='value(zone)' 2>/dev/null | head -n1 || echo "$ZONE_1")
 
 log_info "Simulating ApacheBench load against http://${LB_IP_V4}/ from stress-test VM..."
 STRESS_CMD="
@@ -371,7 +383,7 @@ nohup ab -n 50000 -c 500 http://${LB_IP_V4}/ > /tmp/ab.log 2>&1 &
 echo 'AB_STARTED'
 "
 set +e
-gcloud compute ssh stress-test --zone="$ZONE_1" --quiet --command="$STRESS_CMD" 2>/dev/null || true
+gcloud compute ssh stress-test --zone="$ACTIVE_STRESS_ZONE" --quiet --command="$STRESS_CMD" 2>/dev/null || true
 set -e
 
 # ------------------------------------------------------------------------------
